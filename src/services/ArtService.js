@@ -7,7 +7,17 @@ import { Artwork } from "@/models/Artwork.js"
 
 
 
-class ArtService {
+
+    class ArtService {
+    async changeArtworkPage(pageNumber) {
+        const response = await artApi.get(`/api/artworks?page=${pageNumber}`)
+        logger.log('changed artwork page✅✅', response.data)
+        const arts = response.data.artworks.map(artPOJO => new Artwork(artPOJO))
+        AppState.artworks = arts
+        AppState.currentPage = response.data.page
+        AppState.totalPages = response.data.pages
+    }
+
     async displayArtwork() {
         const response = await artApi.get('/api/artworks')
         logger.log('Displayed Artwork🖼️', response.data)

@@ -27,7 +27,13 @@ async function displayArtwork() {
 }
 
 async function changePage(pageNumber) {
-  logger.log('going to page' + pageNumber)
+  try {
+    await artService.changeArtworkPage(pageNumber)
+  }
+  catch (error) {
+    logger.log('Changed artwork page', error)
+    Pop.error(error);
+  }
 }
 </script>
 
@@ -41,12 +47,47 @@ async function changePage(pageNumber) {
         <button @click="changePage(currentPage + 1)">Next</button>
       </div>
     </section>
-    <section class="row">
+    <section class="row grid">
       <div v-for="artwork in artworks" :key="artwork.id" class="col-3">
-        <img :src="artwork.imgUrl" alt="" class="img-fluid">
+        <img :src="artwork.imgUrl" alt="" class="img-fluid item">
       </div>
     </section>
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+* {
+  box-sizing: border-box;
+}
+
+.grid {
+  columns: 18rem;
+  gap: 1rem;
+  counter-reset: grid;
+}
+
+.item+.item {
+  margin-top: 1rem;
+}
+
+.item {
+  break-inside: avoid;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.item::before {
+  counter-increment: grid;
+  content: counter(grid);
+}
+
+.item:nth-child(3n) {
+  aspect-ratio: 1;
+
+}
+
+.item:nth-child(3n - 1) {
+  aspect-ratio: 2 / 3;
+
+}
+</style>
