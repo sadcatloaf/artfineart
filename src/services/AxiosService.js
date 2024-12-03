@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import { baseURL } from '../env.js'
 import { logger } from '../utils/Logger.js'
-import axios from 'axios'
+
 
 export const api = Axios.create({
   baseURL,
