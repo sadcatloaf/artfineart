@@ -25,6 +25,10 @@ async function displayArtwork() {
     Pop.error(error)
   }
 }
+
+async function changePage(pageNumber) {
+  logger.log('going to page' + pageNumber)
+}
 </script>
 
 <template>
@@ -32,7 +36,9 @@ async function displayArtwork() {
     <section class="row">
       <div class="col-12">
         <h1>Display Artwork</h1>
-        <p>Page {{ currentPage }} of {{ totalPages }}</p>
+        <button @click="changePage(currentPage - 1)">Previous</button>
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+        <button @click="changePage(currentPage + 1)">Next</button>
       </div>
     </section>
     <section class="row">
