@@ -11,8 +11,10 @@ class ArtService {
     async displayArtwork() {
         const response = await artApi.get('/api/artworks')
         logger.log('Displayed Artwork🖼️', response.data)
-        const art = response.data.artworks.map(artPOJO => new Artwork(artPOJO))
-        AppState.artwork = art
+        const arts = response.data.artworks.map(artPOJO => new Artwork(artPOJO))
+        AppState.artworks = arts
+        AppState.currentPage = response.data.page
+        AppState.totalPages = response.data.pages
     }
 }
 export const artService = new ArtService()

@@ -6,7 +6,7 @@ import Pop from '@/utils/Pop';
 import { computed, onMounted } from 'vue';
 
 
-const artwork = computed(() => AppState.artwork)
+const artworks = computed(() => AppState.artworks)
 
 onMounted(() => {
   logger.log('onMounted is Gud')
@@ -33,8 +33,8 @@ async function displayArtwork() {
       </div>
     </section>
     <section class="row">
-      <div class="col-12">
-        {{ artwork }}
+      <div v-for="artwork in artworks" :key="artwork.id" class="col-3">
+        <img :src="artwork.imgUrl" alt="" class="img-fluid">
       </div>
     </section>
   </div>

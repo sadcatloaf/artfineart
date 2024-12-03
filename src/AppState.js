@@ -10,6 +10,8 @@ export const AppState = reactive({
   account: null,
 
 /** @type {import ( './models/Artwork.js' ).Artwork[]} */
-  artwork: []
+  artworks: [],
+  currentPage: 0,
+  totalPages: 0
 })
 
