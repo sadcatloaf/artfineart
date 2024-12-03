@@ -1,11 +1,21 @@
 import Axios from 'axios'
 import { baseURL } from '../env.js'
 import { logger } from '../utils/Logger.js'
+import axios from 'axios'
 
 export const api = Axios.create({
   baseURL,
   timeout: 8000
 })
+
+export const artApi = Axios.create({
+  baseURL,
+  timeout: 8000
+})
+
+
+
+
 
 api.interceptors.request.use(config => config, handleAxiosError)
 api.interceptors.response.use(response => response, handleAxiosError)
