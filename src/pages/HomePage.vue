@@ -7,6 +7,8 @@ import { computed, onMounted } from 'vue';
 
 
 const artworks = computed(() => AppState.artworks)
+const currentPage = computed(() => AppState.currentPage)
+const totalPages = computed(() => AppState.totalPages)
 
 onMounted(() => {
   logger.log('onMounted is Gud')
@@ -30,6 +32,7 @@ async function displayArtwork() {
     <section class="row">
       <div class="col-12">
         <h1>Display Artwork</h1>
+        <p>Page {{ currentPage }} of {{ totalPages }}</p>
       </div>
     </section>
     <section class="row">
