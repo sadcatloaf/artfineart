@@ -42,9 +42,11 @@ async function changePage(pageNumber) {
     <section class="row">
       <div class="col-12">
         <h1>Display Artwork</h1>
-        <button @click="changePage(currentPage - 1)">Previous</button>
+        <button @click="changePage(currentPage - 1)" :disabled="currentPage == 1" type="button"
+          :title="`Go to page ${currentPage - 1}`">Previous</button>
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
-        <button @click="changePage(currentPage + 1)">Next</button>
+        <button @click="changePage(currentPage + 1)" :disabled="currentPage == 35 || currentPage == totalPages"
+          type="button" :title="`Got to page ${currentPage + 1}`">Next</button>
       </div>
     </section>
     <section class="row grid">
