@@ -8,11 +8,6 @@ export const api = Axios.create({
   timeout: 8000
 })
 
-export const artApi = Axios.create({
-  baseURL,
-  timeout: 8000
-})
-
 
 
 

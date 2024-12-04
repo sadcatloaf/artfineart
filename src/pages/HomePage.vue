@@ -4,6 +4,7 @@ import { artService } from '@/services/ArtService';
 import { logger } from '@/utils/Logger';
 import Pop from '@/utils/Pop';
 import { computed, onMounted } from 'vue';
+import AdmirePage from './AdmirePage.vue';
 
 
 const artworks = computed(() => AppState.artworks)
@@ -34,6 +35,16 @@ async function changePage(pageNumber) {
     logger.log('Changed artwork page', error)
     Pop.error(error);
   }
+
+}
+async function admireArtwork(id) {
+  try {
+    await artService.admireArtwork(id)
+  }
+  catch (error) {
+    logger.error('Admired Artwork', error)
+    Pop.error(error);
+  }
 }
 </script>
 
@@ -52,6 +63,10 @@ async function changePage(pageNumber) {
     <section class="row grid">
       <div v-for="artwork in artworks" :key="artwork.id" class="col-3">
         <img :src="artwork.imgUrl" alt="" class="img-fluid item">
+
+        <button @click="admireArtwork(artwork.id)" class="m-2">
+          <i class="mdi mdi-heart "></i>
+        </button>
       </div>
     </section>
   </div>
